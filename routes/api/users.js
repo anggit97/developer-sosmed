@@ -60,7 +60,6 @@ router.post('/', [
             { expiresIn: 360000 },
             (err, token) => {
                 if (err) throw err
-
                 return res.status(200).send({ msg: "success register", token: token })
             }
         )

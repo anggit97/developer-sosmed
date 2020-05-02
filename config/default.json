@@ -1,3 +1,3 @@
 {
-  "mongoURI": "mongodb+srv://anggit97:anggit97@devconnector-s2jfk.mongodb.net/test?retryWrites=true&w=majority"
+  "mongoURI": "mongodb://anggit97:anggit97@devconnector-shard-00-00-s2jfk.mongodb.net:27017,devconnector-shard-00-01-s2jfk.mongodb.net:27017,devconnector-shard-00-02-s2jfk.mongodb.net:27017/test?ssl=true&replicaSet=DevConnector-shard-0&authSource=admin&retryWrites=true&w=majority"
 }

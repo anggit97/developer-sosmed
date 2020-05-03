@@ -25,6 +25,44 @@ router.get('/me', auth, async (req, res) => {
 })
 
 
+//@route    GET api/profile
+//@desc     Get all profiles
+//@access   Public
+router.get('/', async (req, res) => {
+    try {
+        const profile = await Profile.find().populate('user', ['name', 'avatar'])
+
+        res.json(profile)
+    } catch (error) {
+        console.error(error.message)
+        return res.status(500).json({ msg: 'server error' })
+    }
+})
+
+//@route    GET api/profile/:user_id
+//@desc     Get user profile by user id
+//@access   Public
+router.get('/user/:user_id', async (req, res) => {
+    try {
+        const profile = await Profile.findOne({ user: req.params.user_id }).populate('user', ['name', 'avatar'])
+
+        if (!profile) {
+            return res.status(400).json({ msg: "Profile not found" })
+        }
+
+        res.json(profile)
+    } catch (error) {
+        console.error(error.kind)
+
+        if (error.message.includes("ObjectId")) {
+            return res.status(400).json({ msg: "Profile not found" })
+        }
+
+        return res.status(500).json({ msg: 'server error' })
+    }
+})
+
+
 //@route    POST api/profile
 //@desc     Create or Update user profile
 //@access   Private

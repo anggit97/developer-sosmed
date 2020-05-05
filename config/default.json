@@ -1,4 +1,6 @@
 {
   "mongoURI": "mongodb://anggit97:anggit97@devconnector-shard-00-00-s2jfk.mongodb.net:27017,devconnector-shard-00-01-s2jfk.mongodb.net:27017,devconnector-shard-00-02-s2jfk.mongodb.net:27017/test?ssl=true&replicaSet=DevConnector-shard-0&authSource=admin&retryWrites=true&w=majority",
-  "jwtSecret": "myjwttoken"
+  "jwtSecret": "myjwttoken",
+  "githubClientId": "2cacf6d3624c86b0752b",
+  "githubClientSecret": "cadd77c777cfb3fe4f53456ffc60a663283e27b0"
 }

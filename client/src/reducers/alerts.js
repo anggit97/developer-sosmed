@@ -8,10 +8,10 @@ export default function (state = initialState, actions) {
 
     switch (type) {
         case SET_ALERT:
-            return { ...state, payload }
+            return [...state, payload]
         case REMOVE_ALERT:
             return state.filter(alert => alert.id !== payload)
         default:
-            state
+            return state
     }
 }

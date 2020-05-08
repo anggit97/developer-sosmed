@@ -46,7 +46,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             Gravatar email</small
                     >
                 </div>
-                <div className="form-group">t
+                <div className="form-group">
                     <input
                         type="password"
                         placeholder="Password"

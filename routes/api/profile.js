@@ -19,7 +19,7 @@ router.get('/me', auth, async (req, res) => {
             return res.status(400).json({ msg: 'There is no profile for this user' })
         }
 
-        res.json({ profile })
+        res.json(profile)
     } catch (error) {
         console.error(error.message)
         return res.status(500).json({ msg: 'server error' })

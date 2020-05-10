@@ -4,7 +4,9 @@ import { setAlert } from './alert'
 import {
     GET_PROFILE,
     PROFILE_ERROR,
-    UPDATE_PROFILE
+    UPDATE_PROFILE,
+    CLEAR_PROFILE,
+    ACCOUNT_DELETED
 } from './types'
 
 //get current profile
@@ -119,5 +121,77 @@ export const addEducation = (formData, history) => async dispatch => {
             type: PROFILE_ERROR,
             payload: { msg: error.response.statusText, status: error.response.status }
         })
+    }
+}
+
+//delete experience
+export const deleteExperience = id => async dispatch => {
+    try {
+        const res = await axios.delete(`/api/profile/experience/${id}`)
+
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        })
+
+        dispatch(setAlert('Experience removed', 'success'))
+    } catch (error) {
+        const errors = error.response.data.errors
+        if (errors) {
+            errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
+        }
+
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        })
+    }
+}
+
+//delete education
+export const deleteEducation = id => async dispatch => {
+    try {
+        const res = await axios.delete(`/api/profile/education/${id}`)
+
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        })
+
+        dispatch(setAlert('Education removed', 'success'))
+    } catch (error) {
+        const errors = error.response.data.errors
+        if (errors) {
+            errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
+        }
+
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: error.response.statusText, status: error.response.status }
+        })
+    }
+}
+
+//delete account
+export const deleteAccount = id => async dispatch => {
+    if (window.confirm("are you sure to delete account? this can be undone!")) {
+        try {
+            const res = await axios.delete(`/api/profile`)
+
+            dispatch({ type: CLEAR_PROFILE })
+            dispatch({ type: ACCOUNT_DELETED })
+
+            dispatch(setAlert('Your account has permanently deleted', 'success'))
+        } catch (error) {
+            const errors = error.response.data.errors
+            if (errors) {
+                errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
+            }
+
+            dispatch({
+                type: PROFILE_ERROR,
+                payload: { msg: error.response.statusText, status: error.response.status }
+            })
+        }
     }
 }

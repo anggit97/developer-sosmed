@@ -5,6 +5,7 @@ import { getPost } from '../../actions/post'
 import Spinner from '../layout/Spinner'
 import PostItem from '../posts/PostItem'
 import { Link } from 'react-router-dom'
+import CommentForm from './CommentForm'
 
 const Post = ({ getPost, post: { post, loading }, match }) => {
 
@@ -15,6 +16,7 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
     return loading || post === null ? <Spinner /> : <Fragment>
         <Link to="/posts" className="btn btn-light">Back to post</Link>
         <PostItem post={post} showActions={false} />
+        <CommentForm postId={post._id} />
     </Fragment>
 }
 
